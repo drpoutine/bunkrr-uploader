@@ -4,8 +4,15 @@ from pathlib import Path
 
 
 def cli():
-    parser = argparse.ArgumentParser(prog="bunkrr-upload", description="Bunkrr Uploader supporting parallel uploads")
-    parser.add_argument("file", type=Path, help="File or directory to look for files in to upload")
+    parser = argparse.ArgumentParser(
+        prog="bunkrr-upload", 
+        description="Bunkrr Uploader supporting parallel uploads"
+    )
+    parser.add_argument(
+        "file", 
+        type=Path, 
+        help="File or directory to look for files in to upload"
+    )
     parser.add_argument(
         "-t",
         "--token",
@@ -15,7 +22,10 @@ def cli():
                 You can also set the BUNKRR_TOKEN environment variable for this""",
     )
     parser.add_argument(
-        "-f", "--folder", type=str, help="Folder to upload files to overriding the directory name if used"
+        "-f", 
+        "--folder", 
+        type=str, 
+        help="Folder to upload files to overriding the directory name if used"
     )
     parser.add_argument(
         "-d",
@@ -28,7 +38,13 @@ def cli():
         action="store_true",
         help="Use the server's maximum chunk size instead of the default one",
     )
-    parser.add_argument("-c", "--connections", type=int, default=2, help="Maximum parallel uploads to do at once")
+    parser.add_argument(
+        "-c", 
+        "--connections", 
+        type=int, 
+        default=1, 
+        help="Maximum parallel uploads to do at once"
+    )
     parser.add_argument(
         "--public",
         action=argparse.BooleanOptionalAction,

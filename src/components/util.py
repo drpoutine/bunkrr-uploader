@@ -24,7 +24,11 @@ class ProgressFileReader(BufferedReader):
 
 
 class TqdmUpTo(tqdm):
-    """Provides `update_to(n)` which uses `tqdm.update(delta_n)`."""
+    """Provides `update_to(n)` which uses `tqdm.update(delta_n)` with custom formatting."""
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs, 
+                         bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]")
 
     def update_to(self, b=1, bsize=1, tsize=None):
         """
@@ -38,3 +42,4 @@ class TqdmUpTo(tqdm):
         if tsize is not None:
             self.total = tsize
         return self.update(b * bsize - self.n)  # also sets self.n = b * bsize
+
